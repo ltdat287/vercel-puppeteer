@@ -1,9 +1,13 @@
 import fs from 'fs';
 import { screenshot } from './browser';
 
-(async () => {
-  await fs.promises.mkdir('public', { recursive: true });
-  await fs.promises.writeFile('public/index.html', '<img src="/image.png">');
+(async (request, response) => {
+  const { url } = request.query;
+	await fs.promises.mkdir('public', { recursive: true });
+	await fs.promises.writeFile('public/index.html', '<img src="/image.png">');
 
-  await screenshot('https://www.google.com.vn/');
+  console.log('request.query', request.query);
+  let urlTarget = url || 'https://www.google.com.vn/';
+
+	await screenshot(urlTarget);
 })();
