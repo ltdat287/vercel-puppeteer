@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 import { screenshot } from '../browser';
 
 const handler = async (req, res) => {
@@ -10,7 +11,7 @@ const handler = async (req, res) => {
 	await screenshot(url);
 
 	res.writeHead(200, { 'Content-Type': 'text/html' });
-	fs.createReadStream(path.resolve(__dirname, 'public/index.html')).pipe(res);
+	fs.createReadStream(path.resolve(__dirname, '../public/index.html')).pipe(res);
 };
 
 module.exports = handler;
