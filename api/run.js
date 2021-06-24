@@ -7,9 +7,10 @@ const handler = async (req, res) => {
 	await fs.promises.mkdir('public', { recursive: true });
 	await fs.promises.writeFile('public/index.html', '<img src="/image.png">');
 
-	await screenshot(urlTarget);
+	await screenshot(url);
 
-	res.sendFile('public/index.html', { root: __dirname });
+	res.writeHead(200, { 'Content-Type': 'text/html' });
+	fs.createReadStream(path.resolve(__dirname, 'public/index.html')).pipe(res);
 };
 
 module.exports = handler;
