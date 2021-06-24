@@ -1,13 +1,15 @@
 import fs from 'fs';
 import { screenshot } from './browser';
 
-(async (request, response) => {
-  const { url } = request.query;
+const handler = async (req, res) => {
+  const { url = 'https://www.google.com.vn/' } = req.query;
+	console.log('request.query', req.query);
 	await fs.promises.mkdir('public', { recursive: true });
 	await fs.promises.writeFile('public/index.html', '<img src="/image.png">');
 
-  console.log('request.query', request.query);
-  let urlTarget = url || 'https://www.google.com.vn/';
-
 	await screenshot(urlTarget);
-})();
+
+	res.sendFile('public/index.html', { root: __dirname });
+};
+
+module.exports = handler;
