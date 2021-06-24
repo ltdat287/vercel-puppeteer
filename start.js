@@ -3,4 +3,4 @@ require('babel-core/register');
 require('babel-polyfill');
 
 // Import the rest of our application.
-module.exports = require('./run.js');
+module.exports = require('./api/run.js');

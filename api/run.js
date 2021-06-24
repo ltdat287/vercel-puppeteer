@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { screenshot } from './browser';
+import { screenshot } from '../browser';
 
 const handler = async (req, res) => {
   const { url = 'https://www.google.com.vn/' } = req.query;
