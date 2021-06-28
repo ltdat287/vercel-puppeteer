@@ -5,7 +5,7 @@ const handler = async (req, res) => {
 	console.log('request.query', req.query);
 	await screenshot(url);
 
-	res.send('<html><body><img src="/image.png"></body></html>');
+	res.send('<html><body><img src="./image.png"></body></html>');
 };
 
 module.exports = handler;
